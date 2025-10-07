@@ -69,3 +69,5 @@ group :test do
 end
 
 gem 'carrierwave'
+gem 'i18n_generators', '~> 1.2'
+gem 'rails-i18n', '~> 8.0.0'

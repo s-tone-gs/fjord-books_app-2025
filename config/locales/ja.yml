@@ -1,0 +1,21 @@
+ja:
+  books:
+    create:
+      success: '書籍を登録しました'
+    update:
+      success: '書籍を更新しました'
+    destroy:
+      success: '書籍を破棄しました'
+    link:
+      show: "書籍を見る"
+      new: "新しい書籍"
+      edit: "書籍を編集"
+      back: "書籍一覧に戻る"
+    button:
+      destroy: "書籍を破棄"
+    index:
+      title: "書籍一覧"
+    edit:
+      title: "書籍を編集する"
+    new:
+      title: "新しい書籍"
