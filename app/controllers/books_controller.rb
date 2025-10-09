@@ -5,7 +5,7 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    @books = Book.order(:id).page(params[:page])
+    @books = current_user.books.order(:id).page(params[:page])
   end
 
   # GET /books/1 or /books/1.json
@@ -22,6 +22,7 @@ class BooksController < ApplicationController
   # POST /books or /books.json
   def create
     @book = Book.new(book_params)
+    @book.user_id = current_user.id
 
     respond_to do |format|
       if @book.save
