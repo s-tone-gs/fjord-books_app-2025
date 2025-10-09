@@ -23,6 +23,9 @@
   </head>
 
   <body class="<%= params[:action] %>">
+    <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "navbar-link"  %>
+     <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>

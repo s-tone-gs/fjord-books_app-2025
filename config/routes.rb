@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  devise_for :users, controllers: { sessions: 'users/sessions' }
+  root to: "books#index"
 end
