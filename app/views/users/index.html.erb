@@ -1,4 +1,4 @@
-<%= link_to t('views.common.back', name: Book.model_name.human.downcase), books_path %>
+<%= link_to t('views.common.back', name: Book.model_name.human), books_path %>
 <% @users.each do |user| %>
   <div class="index-item">
     <%= render user %>

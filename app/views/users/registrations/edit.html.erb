@@ -7,7 +7,7 @@
   <%= render "users/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %><br>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
@@ -16,36 +16,36 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :postal_code %><br />
+    <%= f.label :postal_code %><br>
     <%= f.text_field :postal_code, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :address %><br />
+    <%= f.label :address %><br>
     <%= f.text_field :address, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :self_introduction %><br />
+    <%= f.label :self_introduction %><br>
     <%= f.text_area :self_introduction, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :password %> <i>(<%= t('devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
+    <%= f.label :password %> <i>(<%= t('devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br>
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
-      <br />
+      <br>
       <em><%= t('devise.registrations.password_characters_minimum', minimum: @minimum_password_length) %></em>
     <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(<%= t('devise.registrations.edit.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
+    <%= f.label :current_password %> <i>(<%= t('devise.registrations.edit.we_need_your_current_password_to_confirm_your_changes') %>)</i><br>
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
