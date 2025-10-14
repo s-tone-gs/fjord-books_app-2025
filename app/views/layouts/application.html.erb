@@ -26,7 +26,7 @@
     <% if user_signed_in? %>
       <%= link_to t('views.common.title_index', name: User.model_name.human), users_path, class: "navbar-link" %>
       <%= link_to t('views.common.title_show', name: current_user.email), user_path(current_user), class: "navbar-link" %>
-      <%= link_to t('devise.sessions.destroy.sign_out'), destroy_user_session_path, data: { turbo_method: :delete }, class: "navbar-link"  %>
+      <%= link_to t('devise.sessions.destroy.sign_out'), destroy_user_session_path, data: { turbo_method: :delete }, class: "navbar-link" %>
     <% end %>
     <%= yield %>
   </body>
