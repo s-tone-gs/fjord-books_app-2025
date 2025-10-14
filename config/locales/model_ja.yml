@@ -1,11 +1,11 @@
 ja:
   activerecord:
     models:
-      book: book  #g
+      book: book
 
     attributes:
       book:
-        author: '作者'  #g
-        memo: 'メモ'  #g
-        picture: '写真'  #g
-        title: 'タイトル'  #g
+        author: 作者
+        memo: メモ
+        picture: 写真
+        title: タイトル
