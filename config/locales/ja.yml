@@ -1,11 +1,12 @@
 ja:
-  books:
+  notice:
     create:
-      success: '書籍を登録しました'
+      success: "%{name}を登録しました"
     update:
-      success: '書籍を更新しました'
+      success: "%{name}を更新しました"
     destroy:
-      success: '書籍を破棄しました'
+      success: "%{name}を破棄しました"
+  books:
     link:
       show: "書籍を見る"
       new: "新しい書籍"

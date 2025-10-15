@@ -1,11 +1,12 @@
 en:
-  books:
+  notice:
     create:
-      success: 'Book was successfully created.'
+      success: "%{name} was successfully created."
     update:
-      success: 'Book was successfully updated.'
+      success: "%{name} was successfully updated."
     destroy:
-      success: 'Book was successfully destroyed.'
+      success: "%{name} was successfully destroyed."
+  books:
     link:
       show: "Show this book"
       new: "New book"
