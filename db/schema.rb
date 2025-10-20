@@ -18,8 +18,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_14_012349) do
     t.datetime "updated_at", null: false
     t.string "author"
     t.string "picture"
-    t.integer "user_id", null: false
-    t.index ["user_id"], name: "index_books_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,6 +34,4 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_14_012349) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
-  add_foreign_key "books", "users"
 end
