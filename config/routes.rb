@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :books
-  devise_for :users, controllers: { sessions: 'users/sessions' }
+  devise_for :users
   resources :users, only: [:index, :show]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
