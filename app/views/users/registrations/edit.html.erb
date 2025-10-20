@@ -35,7 +35,7 @@
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <br>
-      <em><%= t('devise.registrations.password_characters_minimum', minimum: @minimum_password_length) %></em>
+      <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
     <% end %>
   </div>
 
