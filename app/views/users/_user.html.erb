@@ -28,7 +28,11 @@
   <% if user.avatar.attached? %>
     <p>
       <strong>アバター:</strong>
-      <%= image_tag url_for(user.avatar) %>
+      <% if user.avatar.byte_size < 2.megabytes %>
+        <%= image_tag user.avatar %>
+      <% else %>
+        <%= image_tag user.avatar.variant(:thumb) %>
+      <% end %>
     </p>
   <% end %>
 
