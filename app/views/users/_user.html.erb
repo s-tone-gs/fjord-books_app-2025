@@ -25,4 +25,11 @@
     <%= user.self_introduction %>
   </p>
 
+  <% if user.avatar.attached? %>
+    <p>
+      <strong>アバター:</strong>
+      <%= image_tag url_for(user.avatar) %>
+    </p>
+  <% end %>
+
 </div>
