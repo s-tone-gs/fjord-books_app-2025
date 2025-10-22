@@ -26,8 +26,8 @@
   </p>
 
   <p>
-    <strong>アバター:</strong>
-      <%= image_tag user.avatar.variant(resize_to_limit: [120, 160]) if user.avatar.attached? %>
+    <strong><%= User.human_attribute_name(:avatar) %>:</strong>
+    <%= image_tag user.avatar.variant(resize_to_limit: [120, 160]) if user.avatar.attached? %>
   </p>
 
 </div>
