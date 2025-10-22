@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        address: 住所
+        postal_code: 郵便番号
+        self_introduction: 自己紹介 
+  devise:
+    shared:
+      links:
+        sign_out: ログアウト

@@ -1,0 +1,10 @@
+<%= link_to t('views.common.back', name: Book.model_name.human), books_path %>
+<% @users.each do |user| %>
+  <div class="index-item">
+    <%= render user %>
+    <p>
+    </p>
+  </div>
+  <%= link_to t('views.common.show', name: User.model_name.human), user_path(user), class: "navbar-link" %>
+<% end %>
+<%= paginate @users %>
