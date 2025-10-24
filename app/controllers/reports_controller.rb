@@ -23,8 +23,7 @@ class ReportsController < ApplicationController
 
   # POST /reports or /reports.json
   def create
-    @report = Report.new(report_params)
-    @report.user = current_user
+    @report = current_user.report.build(report_params)
 
     respond_to do |format|
       if @report.save
