@@ -1,7 +1,13 @@
 <div id="<%= dom_id report %>">
+  <% owner = report.user %>
   <p>
     <strong>User:</strong>
-    <%= report.user_id %>
+    <%= owner.name.empty? ? owner.email : owner.name %>
+  </p>
+
+  <p>
+    <strong>Posted_at:</strong>
+    <%= report.created_at %>
   </p>
 
   <p>
