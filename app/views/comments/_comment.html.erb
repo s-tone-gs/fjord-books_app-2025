@@ -1,0 +1,13 @@
+<div id="<%= dom_id comment %>">
+  <% owner = comment.user %>
+  <p>
+    <strong>投稿者:<%= owner.name.empty? ? owner.email : owner.name %></strong>
+  </p>
+
+  <p>
+    <strong>コメント:</strong>
+    <%= comment.body %>
+  </p>
+
+</div>
+<%= button_to "Destroy this comment", comment, method: :delete  if comment.user == current_user %>

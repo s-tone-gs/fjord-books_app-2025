@@ -8,3 +8,9 @@
     <%= button_to "Destroy this report", @report, method: :delete %>
   <% end %>
 </div>
+
+<%= render 'comments/form', commentable: @report, comment: @comment %>
+
+<% @report.comments.each do |comment| %>
+  <%= render 'comments/comment', comment: comment %>
+<% end %>
