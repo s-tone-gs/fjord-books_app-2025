@@ -1,22 +1,22 @@
 <div id="<%= dom_id report %>">
   <% owner = report.user %>
   <p>
-    <strong>User:</strong>
+    <strong><%= Report.human_attribute_name(:user) %>:</strong>
     <%= owner.name.empty? ? owner.email : owner.name %>
   </p>
 
   <p>
-    <strong>Posted_at:</strong>
+    <strong><%= Report.human_attribute_name(:created_at) %>:</strong>
     <%= report.created_at %>
   </p>
 
   <p>
-    <strong>Title:</strong>
+    <strong><%= Report.human_attribute_name(:title) %>:</strong>
     <%= report.title %>
   </p>
 
   <p>
-    <strong>Body:</strong>
+    <strong><%= Report.human_attribute_name(:body) %>:</strong>
     <%= report.body %>
   </p>
 
