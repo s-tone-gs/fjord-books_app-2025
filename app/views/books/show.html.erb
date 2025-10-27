@@ -13,6 +13,6 @@
 
 <%= render 'comments/form', commentable: @book, comment: @comment %>
 
-<% @book.comments.each do |comment| %>
+<% @comments.each do |comment| %>
   <%= render 'comments/comment', comment: comment %>
 <% end %>

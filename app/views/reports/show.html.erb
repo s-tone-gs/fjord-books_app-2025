@@ -11,6 +11,6 @@
 
 <%= render 'comments/form', commentable: @report, comment: @comment %>
 
-<% @report.comments.each do |comment| %>
+<% @comments.each do |comment| %>
   <%= render 'comments/comment', comment: comment %>
 <% end %>
