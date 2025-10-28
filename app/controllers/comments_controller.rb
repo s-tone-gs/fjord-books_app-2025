@@ -1,5 +1,8 @@
 class CommentsController < ApplicationController
-  before_action :permit_access, only: [:destroy]
+  include Authorization
+  before_action only: %i[ destroy ] do
+    authorize_user!(Comment, params[:id])
+  end
 
   def create
     set_commentable
@@ -33,13 +36,6 @@ class CommentsController < ApplicationController
       Book.find(params[:book_id])
     elsif params[:report_id]
       Report.find(params[:report_id])
-    end
-  end
-    
-  def permit_access
-    owner = Comment.find(params[:id]).user
-    unless owner == current_user
-      redirect_to reports_path, notice: 'アクセス権限がありません'
     end
   end
 
