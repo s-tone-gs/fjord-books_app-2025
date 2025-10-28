@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class ReportsController < ApplicationController
-  before_action :set_report, only: %i[ show edit update destroy ]
+  before_action :set_report, only: %i[show edit update destroy]
   include Authorization
-  before_action only: %i[ edit update destroy ] do
+  before_action only: %i[edit update destroy] do
     authorize_user!(Report, params[:id])
   end
 
@@ -22,8 +24,7 @@ class ReportsController < ApplicationController
   end
 
   # GET /reports/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /reports or /reports.json
   def create
@@ -59,13 +60,14 @@ class ReportsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_report
-      @report = Report.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def report_params
-      params.expect(report: [ :user_id, :title, :body ])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_report
+    @report = Report.find(params.expect(:id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def report_params
+    params.expect(report: %i[user_id title body])
+  end
 end

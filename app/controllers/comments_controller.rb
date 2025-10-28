@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   include Authorization
-  before_action only: %i[ destroy ] do
+  before_action only: %i[destroy] do
     authorize_user!(Comment, params[:id])
   end
 
@@ -10,9 +12,8 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     respond_to do |format|
-      if @comment.save
+      @comment.save &&
         format.html { redirect_to @commentable, notice: t('controllers.common.notice_create', name: Comment.model_name.human) }
-      end
     end
   end
 
@@ -20,7 +21,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params.expect(:id))
     commentable = @comment.commentable
     @comment.destroy!
-    
+
     respond_to do |format|
       format.html { redirect_to commentable, notice: t('controllers.common.notice_destroy', name: Comment.model_name.human) }
     end
@@ -30,11 +31,11 @@ class CommentsController < ApplicationController
 
   def set_commentable
     @commentable =
-    if params[:book_id]
-      Book.find(params[:book_id])
-    elsif params[:report_id]
-      Report.find(params[:report_id])
-    end
+      if params[:book_id]
+        Book.find(params[:book_id])
+      elsif params[:report_id]
+        Report.find(params[:report_id])
+      end
   end
 
   def comment_params
