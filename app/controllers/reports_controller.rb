@@ -4,7 +4,7 @@ class ReportsController < ApplicationController
   before_action :set_report, only: %i[show edit update destroy]
   include Authorization
   before_action only: %i[edit update destroy] do
-    authorize_user!(Report, params[:id])
+    authorize_user!(Report, params.expect(:id))
   end
 
   # GET /reports or /reports.json
