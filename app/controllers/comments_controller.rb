@@ -3,7 +3,7 @@
 class CommentsController < ApplicationController
   include Authorization
   before_action only: %i[destroy] do
-    authorize_user!(Comment, params[:id])
+    authorize_user!(Comment, params.expect(:id))
   end
 
   def create
