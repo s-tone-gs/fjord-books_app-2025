@@ -27,7 +27,6 @@ class ReportsController < ApplicationController
       @report.mentioning_reports << mentioned_reports
     end
     redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
-    #render :edit, status: :unprocessable_entity
   end
 
   def update
