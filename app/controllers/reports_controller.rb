@@ -30,13 +30,13 @@ class ReportsController < ApplicationController
   end
 
   def update
-      @report.transaction do
-        @report.update!(report_params)
-        mentioned_ids = find_mentioned_ids(@report)
-        mentioned_reports = Report.find(mentioned_ids)
-        @report.mentioning_reports = mentioned_reports
-      end
-      redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
+    @report.transaction do
+      @report.update!(report_params)
+      mentioned_ids = find_mentioned_ids(@report)
+      mentioned_reports = Report.find(mentioned_ids)
+      @report.mentioning_reports = mentioned_reports
+    end
+    redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
   end
 
   def destroy
