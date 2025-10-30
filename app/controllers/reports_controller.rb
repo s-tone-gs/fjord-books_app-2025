@@ -9,6 +9,7 @@ class ReportsController < ApplicationController
 
   def show
     @report = Report.find(params[:id])
+    @mentioneds = @report.mentioned_reports.includes(:user)
   end
 
   def new
@@ -19,20 +20,24 @@ class ReportsController < ApplicationController
 
   def create
     @report = current_user.reports.new(report_params)
-
-    if @report.save
-      redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
-    else
-      render :new, status: :unprocessable_entity
+    mentioned_ids = find_mentioned_ids(@report)
+    @report.transaction do
+      @report.save!
+      mentioned_reports = Report.find(mentioned_ids)
+      @report.mentioning_reports << mentioned_reports
     end
+    redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
+    #render :edit, status: :unprocessable_entity
   end
 
   def update
-    if @report.update(report_params)
+      @report.transaction do
+        @report.update!(report_params)
+        mentioned_ids = find_mentioned_ids(@report)
+        mentioned_reports = Report.find(mentioned_ids)
+        @report.mentioning_reports = mentioned_reports
+      end
       redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
-    else
-      render :edit, status: :unprocessable_entity
-    end
   end
 
   def destroy
@@ -45,6 +50,10 @@ class ReportsController < ApplicationController
 
   def set_report
     @report = current_user.reports.find(params[:id])
+  end
+
+  def find_mentioned_ids(report)
+    report.content.scan(/http:\/\/localhost:3000\/reports\/(.+)/).flatten
   end
 
   def report_params

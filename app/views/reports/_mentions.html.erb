@@ -1,0 +1,11 @@
+<div class="comments-container">
+  <strong><%= t('views.mention.mentioneds', report: Report.model_name.human, mention: Mention.model_name.human) %></strong>
+  <% mentioneds.each do |mentioned| %>
+    <p>
+      <strong><%= Report.human_attribute_name(:title) %>:</strong>
+      <%= link_to mentioned.title, url_for(mentioned) %>
+      <strong><%= Report.human_attribute_name(:user) %>:</strong>
+      <%= mentioned.user.name %>
+    </p>
+  <% end %>
+</div>
