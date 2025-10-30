@@ -52,7 +52,7 @@ class ReportsController < ApplicationController
   end
 
   def find_mentioned_ids(report)
-    report.content.scan(/http:\/\/localhost:3000\/reports\/(.+)/).flatten
+    report.content.scan(%r{http://localhost:3000/reports/(.+)}).flatten
   end
 
   def report_params
