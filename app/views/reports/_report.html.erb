@@ -1,8 +1,7 @@
 <div id="<%= dom_id report %>">
-  <% owner = report.user %>
   <p>
     <strong><%= Report.human_attribute_name(:user) %>:</strong>
-    <%= owner.name.empty? ? owner.email : owner.name %>
+    <%= report.posted_by %>
   </p>
 
   <p>
