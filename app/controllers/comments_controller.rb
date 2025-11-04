@@ -11,9 +11,8 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.build(comment_params)
     @comment.user = current_user
 
-    respond_to do |format|
-      @comment.save &&
-        format.html { redirect_to @commentable, notice: t('controllers.common.notice_create', name: Comment.model_name.human) }
+    if @comment.save
+      redirect_to @commentable, notice: t('controllers.common.notice_create', name: Comment.model_name.human)
     end
   end
 
@@ -22,9 +21,7 @@ class CommentsController < ApplicationController
     commentable = @comment.commentable
     @comment.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to commentable, notice: t('controllers.common.notice_destroy', name: Comment.model_name.human) }
-    end
+    redirect_to commentable, notice: t('controllers.common.notice_destroy', name: Comment.model_name.human)
   end
 
   private
