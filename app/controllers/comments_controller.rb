@@ -13,6 +13,8 @@ class CommentsController < ApplicationController
 
     if @comment.save
       redirect_to @commentable, notice: t('controllers.common.notice_create', name: Comment.model_name.human)
+    else
+      render 'reports/show', status: :unprocessable_entity
     end
   end
 
@@ -27,12 +29,10 @@ class CommentsController < ApplicationController
   private
 
   def set_commentable
-    @commentable =
-      if params[:book_id]
-        Book.find(params[:book_id])
-      elsif params[:report_id]
-        Report.find(params[:report_id])
-      end
+    # @commentableにコメント対象のオブジェクトを代入するメソッド
+    # 子クラスで必ずオーバーライドする
+    # 例）
+    # @commentable = Book.find(params[:book_id])
   end
 
   def comment_params
