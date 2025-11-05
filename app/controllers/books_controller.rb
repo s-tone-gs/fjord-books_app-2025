@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class BooksController < ApplicationController
+  include CommentSetup
   before_action :set_book, only: %i[show edit update destroy]
 
   # GET /books or /books.json
@@ -11,7 +12,7 @@ class BooksController < ApplicationController
   # GET /books/1 or /books/1.json
   def show
     @comment = Comment.new
-    @comments = @book.comments.includes(:user).order(:id)
+    set_comments(@book)
   end
 
   # GET /books/new

@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class ReportsController < ApplicationController
-  before_action :set_report, only: %i[show edit update destroy]
+  include CommentSetup
   include Authorization
+  before_action :set_report, only: %i[show edit update destroy]
   before_action only: %i[edit update destroy] do
     authorize_user!(Report, params.expect(:id))
   end
@@ -15,7 +16,7 @@ class ReportsController < ApplicationController
   # GET /reports/1
   def show
     @comment = Comment.new
-    @comments = @report.comments.includes(:user)
+    set_comments(@report)
   end
 
   # GET /reports/new
