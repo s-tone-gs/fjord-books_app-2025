@@ -1,7 +1,7 @@
 <div id="<%= dom_id comment %>">
   <% owner = comment.user %>
   <p>
-    <strong><%= Comment.human_attribute_name(:user) %>:<%= owner.name.empty? ? owner.email : owner.name %></strong>
+    <strong><%= Comment.human_attribute_name(:user) %>:<%= comment.posted_by %></strong>
   </p>
 
   <p>
