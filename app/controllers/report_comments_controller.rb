@@ -8,8 +8,7 @@ class ReportCommentsController < CommentsController
 
   def render_failure
     @report = @commentable
-    @comments = set_comments(@commentable)
+    @comments = setup_comments(@commentable)
     render 'reports/show', status: :unprocessable_entity
   end
-
 end

@@ -8,8 +8,7 @@ class BookCommentsController < CommentsController
 
   def render_failure
     @book = @commentable
-    @comments = set_comments(@commentable)
+    @comments = setup_comments(@commentable)
     render 'books/show', status: :unprocessable_entity
   end
-
 end

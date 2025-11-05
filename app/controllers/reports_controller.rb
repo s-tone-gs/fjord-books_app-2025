@@ -16,7 +16,7 @@ class ReportsController < ApplicationController
   # GET /reports/1
   def show
     @comment = Comment.new
-    set_comments(@report)
+    setup_comments(@report)
   end
 
   # GET /reports/new
