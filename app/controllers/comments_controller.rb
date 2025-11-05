@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to @commentable, notice: t('controllers.common.notice_create', name: Comment.model_name.human)
     else
-      render 'reports/show', status: :unprocessable_entity
+      render_failure
     end
   end
 
@@ -33,6 +33,11 @@ class CommentsController < ApplicationController
     # 子クラスで必ずオーバーライドする
     # 例）
     # @commentable = Book.find(params[:book_id])
+  end
+
+  def render_failure
+    # コメントの保存が失敗した際に行う処理
+    # 子クラスで必ずオーバーライドする
   end
 
   def comment_params
