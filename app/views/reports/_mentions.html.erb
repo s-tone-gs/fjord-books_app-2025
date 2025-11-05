@@ -5,7 +5,7 @@
       <strong><%= Report.human_attribute_name(:title) %>:</strong>
       <%= link_to mentioned.title, report_path(mentioned) %>
       <strong><%= Report.human_attribute_name(:user) %>:</strong>
-      <%= mentioned.user.name %>
+      <%= mentioned.posted_by %>
     </p>
   <% end %>
 </div>
