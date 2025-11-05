@@ -3,7 +3,7 @@
   <% mentioneds.each do |mentioned| %>
     <p>
       <strong><%= Report.human_attribute_name(:title) %>:</strong>
-      <%= link_to mentioned.title, url_for(mentioned) %>
+      <%= link_to mentioned.title, report_path(mentioned) %>
       <strong><%= Report.human_attribute_name(:user) %>:</strong>
       <%= mentioned.user.name %>
     </p>
