@@ -19,8 +19,4 @@ class Report < ApplicationRecord
   def created_on
     created_at.to_date
   end
-
-  def posted_by
-    user.name.empty? ? user.email : user.name
-  end
 end
