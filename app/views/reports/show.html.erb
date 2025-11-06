@@ -5,6 +5,7 @@
 </div>
 
 <%= render 'application/comments', commentable: @report %>
+<%= render 'mentions', mentioneds: @mentioneds unless @mentioneds.empty? %>
 
 <nav class="page-nav">
   <% if @report.editable?(current_user) %>

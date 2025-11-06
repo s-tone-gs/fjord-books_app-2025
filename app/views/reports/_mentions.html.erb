@@ -1,0 +1,11 @@
+<div>
+  <strong><%= t('views.mention.mentioneds', report: Report.model_name.human, mention: Mention.model_name.human) %></strong>
+  <% mentioneds.each do |mentioned| %>
+    <p>
+      <strong><%= Report.human_attribute_name(:title) %>:</strong>
+      <%= link_to mentioned.title, report_path(mentioned) %>
+      <strong><%= Report.human_attribute_name(:user) %>:</strong>
+      <%= mentioned.user.name_or_email %>
+    </p>
+  <% end %>
+</div>
