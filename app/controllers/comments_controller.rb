@@ -29,6 +29,7 @@ class CommentsController < ApplicationController
   private
 
   def set_commentable
+    raise NotImplementedError
     # @commentableにコメント対象のオブジェクトを代入するメソッド
     # 子クラスで必ずオーバーライドする
     # 例）
@@ -36,6 +37,7 @@ class CommentsController < ApplicationController
   end
 
   def render_failure
+    raise NotImplementedError
     # コメントの保存が失敗した際に行う処理
     # 子クラスで必ずオーバーライドする
   end
