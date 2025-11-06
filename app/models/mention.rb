@@ -8,9 +8,8 @@ class Mention < ApplicationRecord
   validate :prevent_self_reference
 
   def prevent_self_reference
-    if mentioning_id.equal?(mentioned_id)
-      errors.add(:mentioning, I18n.t('errors.messages.self_reference', model: Report.model_name.human))
-      false
-    end
+    return unless mentioning_id.equal?(mentioned_id)
+
+    errors.add(:mentioning, I18n.t('errors.messages.self_reference', model: Report.model_name.human))
   end
 end

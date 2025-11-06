@@ -25,6 +25,7 @@ class Report < ApplicationRecord
     transaction do
       raise ActiveRecord::Rollback unless save
       raise ActiveRecord::Rollback unless save_mentioning
+
       true
     end
   end
@@ -33,6 +34,7 @@ class Report < ApplicationRecord
     transaction do
       raise ActiveRecord::Rollback unless update(report_params)
       raise ActiveRecord::Rollback unless save_mentioning
+
       true
     end
   end
@@ -42,9 +44,9 @@ class Report < ApplicationRecord
   def prevent_mentioning_not_exist_report
     mentioned_ids = find_mentioned_ids(self)
     reports = Report.where(id: mentioned_ids)
-    unless mentioned_ids.length.equal?(reports.length)
-      errors.add(:mentioning, I18n.t('errors.messages.not_found'))
-    end
+    return if mentioned_ids.length.equal?(reports.length)
+
+    errors.add(:mentioning, I18n.t('errors.messages.not_found'))
   end
 
   def save_mentioning
@@ -62,5 +64,4 @@ class Report < ApplicationRecord
   def find_mentioned_ids(report)
     report.content.scan(%r{http://localhost:3000/reports/(.+)}).flatten
   end
-
 end
