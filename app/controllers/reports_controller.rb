@@ -20,23 +20,19 @@ class ReportsController < ApplicationController
 
   def create
     @report = current_user.reports.new(report_params)
-    mentioned_ids = find_mentioned_ids(@report)
-    @report.transaction do
-      @report.save!
-      mentioned_reports = Report.find(mentioned_ids)
-      @report.mentioning_reports << mentioned_reports
+    if @report.save_report_and_mentioning
+      redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
+    else
+      render :new, status: :unprocessable_entity
     end
-    redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
   end
 
   def update
-    @report.transaction do
-      @report.update!(report_params)
-      mentioned_ids = find_mentioned_ids(@report)
-      mentioned_reports = Report.find(mentioned_ids)
-      @report.mentioning_reports = mentioned_reports
+    if @report.update_report_and_mentioning(report_params)
+      redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
+    else
+      render :edit, status: :unprocessable_entity
     end
-    redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
   end
 
   def destroy
@@ -49,10 +45,6 @@ class ReportsController < ApplicationController
 
   def set_report
     @report = current_user.reports.find(params[:id])
-  end
-
-  def find_mentioned_ids(report)
-    report.content.scan(%r{http://localhost:3000/reports/(.+)}).flatten
   end
 
   def report_params
