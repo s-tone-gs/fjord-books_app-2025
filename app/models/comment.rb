@@ -5,4 +5,8 @@ class Comment < ApplicationRecord
   belongs_to :user
 
   validates :body, presence: true
+
+  def self.comments_to_commentable(commentable)
+    commentable.comments.includes(:user).order(:id)
+  end
 end

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ReportsController < ApplicationController
-  include CommentSetup
   include Authorization
   before_action :set_report, only: %i[show edit update destroy]
   before_action only: %i[edit update destroy] do
@@ -16,7 +15,7 @@ class ReportsController < ApplicationController
   # GET /reports/1
   def show
     @comment = Comment.new
-    setup_comments(@report)
+    @comments = Comment.comments_to_commentable(@report)
   end
 
   # GET /reports/new
