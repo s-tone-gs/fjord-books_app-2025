@@ -1,0 +1,16 @@
+<%= render @report %>
+
+<div>
+  <%= link_to t('views.common.back', name: Report.model_name.human), reports_path %>
+  <% if current_user == @report.user %>
+    |<%= link_to t('views.common.edit', name: Report.model_name.human), edit_report_path(@report) %>
+
+    <%= button_to t('views.common.destroy', name: Report.model_name.human), @report, method: :delete %>
+  <% end %>
+</div>
+
+<%= render 'comments/form', commentable: @report, comment: @comment %>
+
+<% @comments.each do |comment| %>
+  <%= render 'comments/comment', comment: comment %>
+<% end %>

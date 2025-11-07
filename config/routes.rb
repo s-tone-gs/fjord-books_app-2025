@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
+  resources :reports do
+    resources :comments, controller: 'report_comments', only: [:create]
+  end
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   devise_for :users
   root to: 'books#index'
-  resources :books
+  resources :books do
+    resources :comments, controller: 'book_comments', only: [:create]
+  end
+  resources :comments, only: [:destroy]
   resources :users, only: %i(index show)
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
