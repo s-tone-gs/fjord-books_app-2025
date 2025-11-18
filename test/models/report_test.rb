@@ -11,8 +11,13 @@ class ReportTest < ActiveSupport::TestCase
     assert_not(reports(:alice_report).editable?(users(:just_registered_user)))
   end
 
-  test 'created_on convert ActiveSupport::TimeWithZone to Date' do
-    assert_instance_of(Date, reports(:alice_report).created_on)
+  test 'created_on return correct Date' do
+    travel_to Time.zone.local(2025, 11, 18, 2, 15, 44)
+    report = Report.new(title: 'dummy', content: 'summy')
+    report.user = users(:report_writer_named_alice)
+    report.save
+
+    assert_equal(Date.current, report.created_on)
   end
 
   test 'save_mentions add ReportMention successfully' do
