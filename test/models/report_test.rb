@@ -32,4 +32,10 @@ class ReportTest < ActiveSupport::TestCase
     report.update(content: '言及を消します')
     assert_not_includes(report.mentioning_reports, reports(:bob_report_mentioned_by_others), '言及が正しく削除できていません')
   end
+
+  test 'save_mention retain mention when link unchange' do
+    report = reports(:alice_report_mentioning_bob_report)
+    report.update(content: 'updateします。http://localhost:3000/reports/2')
+    assert_includes(report.mentioning_reports, reports(:bob_report_mentioned_by_others), '言及が不正に削除されています')
+  end
 end
